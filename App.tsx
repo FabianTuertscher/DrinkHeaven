@@ -4,7 +4,6 @@
  *
  * @format
  */
-
 import React from 'react';
 import type {PropsWithChildren} from 'react';
 import {
@@ -70,22 +69,26 @@ function App(): JSX.Element {
         barStyle={isDarkMode ? 'light-content' : 'dark-content'}
         backgroundColor={backgroundStyle.backgroundColor}
       />
-      <View style={{backgroundColor: isDarkMode ? Colors.black : Colors.white,}}>
+      <View style={[styles.app, {backgroundColor: isDarkMode ? Colors.black : Colors.white}]}>
         <Text>Drink Heaven</Text>
         <Image
             source={require('./images/drink-heaven-logo.png')}
         />
+        <Text>Select Mode</Text>
         <Button
-           title="Press me"
+           title="Never have I ever"
            onPress={() => Alert.alert('Simple Button pressed')}
+           style={styles.button}
         />
         <Button
-            title="Press me"
+            title="Who would rather"
             onPress={() => Alert.alert('Simple Button pressed')}
+            style={styles.button}
         />
         <Button
-            title="Press me"
+            title="Challenges"
             onPress={() => Alert.alert('Simple Button pressed')}
+            style={styles.button}
         />
       </View>
     </SafeAreaView>
@@ -109,6 +112,14 @@ const styles = StyleSheet.create({
   highlight: {
     fontWeight: '700',
   },
+  app: {
+    alignItems: 'center',
+  },
+  button: {
+    width: '85%',
+    color: 'red',
+    backgroundColor: 'red',
+  }
 });
 
 export default App;
