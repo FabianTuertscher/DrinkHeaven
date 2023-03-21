@@ -1,125 +1,60 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
 import React from 'react';
-import type {PropsWithChildren} from 'react';
 import {
   SafeAreaView,
-  ScrollView,
   StatusBar,
-  StyleSheet,
   Text,
-  useColorScheme,
   View,
   Image,
-  Button,
+  StyleSheet,
 } from 'react-native';
-
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
-
-type SectionProps = PropsWithChildren<{
-  title: string;
-}>;
-
-function Section({children, title}: SectionProps): JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
-  return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
-    </View>
-  );
-}
+import LinearGradient from 'react-native-linear-gradient';
+import TextStyles from './TextStyles';
+import MenuButton from './components/menuButton';
 
 function App(): JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
-
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
-
   return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
-      />
-      <View style={[styles.app, {backgroundColor: isDarkMode ? Colors.black : Colors.white}]}>
-        <Text>Drink Heaven</Text>
-        <Image
-            source={require('./images/drink-heaven-logo.png')}
-        />
-        <Text>Select Mode</Text>
-        <Button
-           title="Never have I ever"
-           onPress={() => Alert.alert('Simple Button pressed')}
-           style={styles.button}
-        />
-        <Button
-            title="Who would rather"
-            onPress={() => Alert.alert('Simple Button pressed')}
-            style={styles.button}
-        />
-        <Button
-            title="Challenges"
-            onPress={() => Alert.alert('Simple Button pressed')}
-            style={styles.button}
-        />
-      </View>
+    <SafeAreaView>
+      <StatusBar backgroundColor="#B8BEDD" />
+      <LinearGradient
+        colors={['#B8BEDD', '#F0A6CA']}
+        start={{x: 0, y: 0.3}}
+        end={{x: 0.95, y: 1}}>
+        <View style={styles.appContainer}>
+          <View style={styles.logoContainer}>
+            <Text style={TextStyles.heading}>Drink Heaven</Text>
+            <Image source={require('./images/drink-heaven-logo.png')} />
+          </View>
+          <Text style={[TextStyles.heading, styles.text]}>Select Mode</Text>
+          <View style={styles.buttonContainer}>
+            <MenuButton text="Never have I ever" />
+            <MenuButton text="Who would rather" />
+            <MenuButton text="Challenges" />
+          </View>
+        </View>
+      </LinearGradient>
     </SafeAreaView>
   );
 }
 
-const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-  app: {
-    alignItems: 'center',
-  },
-  button: {
-    width: '85%',
-    color: 'red',
-    backgroundColor: 'red',
-  }
-});
-
 export default App;
+
+const styles = StyleSheet.create({
+  appContainer: {
+    height: '100%',
+  },
+  logoContainer: {
+    flex: 3,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  text: {
+    flex: 1,
+    textAlign: 'center',
+    textAlignVertical: 'bottom',
+  },
+  buttonContainer: {
+    flex: 5,
+    alignItems: 'center',
+    justifyContent: 'space-evenly',
+  },
+});
