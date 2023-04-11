@@ -4,11 +4,12 @@ import TextStyles from '../TextStyles';
 
 type menuButtonProps = {
   text: String;
+  onPress: () => void;
 };
 
 const MenuButton = (props: menuButtonProps) => {
   return (
-    <Pressable style={styles.pressable}>
+    <Pressable style={styles.pressable} onPress={props.onPress}>
       <View style={styles.view}>
         <Text style={TextStyles.text}>{props.text}</Text>
       </View>
